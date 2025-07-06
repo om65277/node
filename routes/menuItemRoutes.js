@@ -4,6 +4,22 @@ const router = express.Router();
 const MenuItem = require('./../models/menu');
 
 
+
+router.get('/', async(req, res) => {
+
+    try {
+      const data = await MenuItem.find();
+      console.log('Data fetched');
+      res.status(200).json(data);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({error : 'Internal server error'});
+    }
+})
+
+
+
+
 // post method to add a menu item
 
 router.post('/', async (req, res) => {
